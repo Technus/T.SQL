@@ -1,7 +1,6 @@
-﻿namespace T.SQL.Mapper
-{
-    public class Class1
-    {
+﻿namespace T.SQL.Mapper;
 
-    }
+public class Class1
+{
+
 }

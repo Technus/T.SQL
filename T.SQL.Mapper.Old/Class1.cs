@@ -1,7 +1,6 @@
-﻿namespace T.SQL.Mapper.Old
-{
-    public class Class1
-    {
+﻿namespace T.SQL.Mapper.Old;
 
-    }
+public class Class1
+{
+
 }

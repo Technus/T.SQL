@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CodeGen": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\T.SQL.Test\\T.SQL.Test.csproj"
+    }
+  }
+}
