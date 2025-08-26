@@ -1,6 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 
-namespace T.SQL.Mapper;
+namespace T.SQL.Mapper.Old;
 
 public static class SqlDataReaderExtensions
 {
