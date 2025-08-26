@@ -72,7 +72,7 @@ public static class SqlParameterExtensions
 
     public static char? GetCharOrNull(this SqlParameter parameter) => parameter.IsDBNull() ? null : parameter.GetChar();
 
-    public static string GetString(this SqlParameter parameter) => parameter.Value.ToString()!;
+    public static string GetString(this SqlParameter parameter) => (string)parameter.Value;
 
 #if NET6_0_OR_GREATER
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
