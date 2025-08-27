@@ -1,5 +1,8 @@
 using System.Configuration;
 using System.Reflection;
+using static T.SQL.Mapper.SqlDataReaderExtensions;
+using static T.SQL.Mapper.Old.SqlDataReaderExtensions;
+using System.Data;
 
 namespace T.SQL.Test;
 
@@ -38,6 +41,34 @@ public class SQLTest
     {
         using var conn = new System.Data.SqlClient.SqlConnection(GetConnectionString());
         await conn.OpenAsync();
+    }
+
+    [Fact]
+    public async Task ReadBinaryNew()
+    {
+        using var conn = new Microsoft.Data.SqlClient.SqlConnection(GetConnectionString());
+        await conn.OpenAsync();
+        var cmd = conn.CreateCommand();
+        cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+        var reader = await cmd.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
+        {
+            var data = reader.GetBytes("Bin");
+        }
+    }
+
+    [Fact]
+    public async Task ReadBinaryOld()
+    {
+        using var conn = new System.Data.SqlClient.SqlConnection(GetConnectionString());
+        await conn.OpenAsync();
+        var cmd = conn.CreateCommand();
+        cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+        var reader = await cmd.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
+        {
+            var data = reader.GetBytes("Bin");
+        }
     }
 
     public async Task<string> CreateTable(string? name = default)
