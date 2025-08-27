@@ -3,14 +3,25 @@ using System.Reflection;
 using static T.SQL.Mapper.SqlDataReaderExtensions;
 using static T.SQL.Mapper.Old.SqlDataReaderExtensions;
 using System.Data;
+using System.Diagnostics;
+using Xunit.Abstractions;
+
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
 
 namespace T.SQL.Test;
 
 public class SQLTest
 {
+    private readonly ITestOutputHelper output;
+    
     static SQLTest()
     {
         CopyConfig();
+    }
+
+    public SQLTest(ITestOutputHelper output)
+    {
+        this.output = output;
     }
 
     private static void CopyConfig()
@@ -44,31 +55,131 @@ public class SQLTest
     }
 
     [Fact]
-    public async Task ReadBinaryNew()
+    public async Task ReadBinaryAsyncNew()
     {
-        using var conn = new Microsoft.Data.SqlClient.SqlConnection(GetConnectionString());
-        await conn.OpenAsync();
-        var cmd = conn.CreateCommand();
-        cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
-        var reader = await cmd.ExecuteReaderAsync();
-        while (await reader.ReadAsync())
+        for (int i = 0; i < 1000; i++)
         {
-            var data = reader.GetBytes("Bin");
+            using var conn = new Microsoft.Data.SqlClient.SqlConnection(GetConnectionString());
+            await conn.OpenAsync();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+            var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                var data = reader.GetBytes("Bin");
+            }
         }
+        var s = Stopwatch.StartNew();
+        for (int i = 0; i < 1000; i++)
+        {
+            using var conn = new Microsoft.Data.SqlClient.SqlConnection(GetConnectionString());
+            await conn.OpenAsync();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+            var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                var data = reader.GetBytes("Bin");
+            }
+        }
+        s.Stop();
+        output.WriteLine($"T:{s.Elapsed}");
     }
 
     [Fact]
-    public async Task ReadBinaryOld()
+    public async Task ReadBinaryAsyncOld()
     {
-        using var conn = new System.Data.SqlClient.SqlConnection(GetConnectionString());
-        await conn.OpenAsync();
-        var cmd = conn.CreateCommand();
-        cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
-        var reader = await cmd.ExecuteReaderAsync();
-        while (await reader.ReadAsync())
+        for (int i = 0; i < 1000; i++)
         {
-            var data = reader.GetBytes("Bin");
+            using var conn = new System.Data.SqlClient.SqlConnection(GetConnectionString());
+            await conn.OpenAsync();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+            var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                var data = reader.GetBytes("Bin");
+            }
         }
+        var s = Stopwatch.StartNew();
+        for (int i = 0; i < 1000; i++)
+        {
+            using var conn = new System.Data.SqlClient.SqlConnection(GetConnectionString());
+            await conn.OpenAsync();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+            var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                var data = reader.GetBytes("Bin");
+            }
+        }
+        s.Stop();
+        output.WriteLine($"T:{s.Elapsed}");
+    }
+
+    [Fact]
+    public void ReadBinaryNew()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
+            using var conn = new Microsoft.Data.SqlClient.SqlConnection(GetConnectionString());
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var data = reader.GetBytes("Bin");
+            }
+        }
+        var s = Stopwatch.StartNew();
+        for (int i = 0; i < 1000; i++)
+        {
+            using var conn = new Microsoft.Data.SqlClient.SqlConnection(GetConnectionString());
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var data = reader.GetBytes("Bin");
+            }
+        }
+        s.Stop();
+        output.WriteLine($"T:{s.Elapsed}");
+    }
+
+    [Fact]
+    public void ReadBinaryOld()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
+            using var conn = new System.Data.SqlClient.SqlConnection(GetConnectionString());
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var data = reader.GetBytes("Bin");
+            }
+        }
+        var s = Stopwatch.StartNew();
+        for (int i = 0; i < 1000; i++)
+        {
+            using var conn = new System.Data.SqlClient.SqlConnection(GetConnectionString());
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM [Test].[dbo].[TableBinaryStorage]";
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var data = reader.GetBytes("Bin");
+            }
+        }
+        s.Stop();
+        output.WriteLine($"T:{s.Elapsed}");
     }
 
     public async Task<string> CreateTable(string? name = default)
