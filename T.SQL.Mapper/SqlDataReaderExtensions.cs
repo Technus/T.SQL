@@ -112,15 +112,6 @@ public static class SqlDataReaderExtensions
     public static float? GetFloatOrNull(this SqlDataReader row, string columnName) => row.GetFloatOrNull(row.GetOrdinal(columnName));
     public static float? GetFloatOrNull(this SqlDataReader row, int columnId) => row.IsDBNull(columnId) ? null : row.GetFloat(columnId);
 
-    public static float GetSingle(this SqlDataReader row, string columnName) => row.GetSingle(row.GetOrdinal(columnName));
-    public static float GetSingle(this SqlDataReader row, int columnId) => row.GetFloat(columnId);
-
-    public static float GetSingleOrDefault(this SqlDataReader row, string columnName, float defaultValue = default) => row.GetSingleOrDefault(row.GetOrdinal(columnName), defaultValue);
-    public static float GetSingleOrDefault(this SqlDataReader row, int columnId, float defaultValue = default) => row.IsDBNull(columnId) ? defaultValue : row.GetSingle(columnId);
-
-    public static float? GetSingleOrNull(this SqlDataReader row, string columnName) => row.GetSingleOrNull(row.GetOrdinal(columnName));
-    public static float? GetSingleOrNull(this SqlDataReader row, int columnId) => row.IsDBNull(columnId) ? null : row.GetSingle(columnId);
-
     public static double GetDouble(this SqlDataReader row, string columnName) => row.GetDouble(row.GetOrdinal(columnName));
 
     public static double GetDoubleOrDefault(this SqlDataReader row, string columnName, double defaultValue = default) => row.GetDoubleOrDefault(row.GetOrdinal(columnName), defaultValue);
@@ -147,14 +138,10 @@ public static class SqlDataReaderExtensions
 
     public static string GetString(this SqlDataReader row, string columnName) => row.GetString(row.GetOrdinal(columnName));
 
-#if NET6_0_OR_GREATER
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
-#endif
     public static string? GetStringOrDefault(this SqlDataReader row, string columnName, string? defaultValue = default) => row.GetStringOrDefault(row.GetOrdinal(columnName), defaultValue);
 
-#if NET6_0_OR_GREATER
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
-#endif
     public static string? GetStringOrDefault(this SqlDataReader row, int columnId, string? defaultValue = default) => row.IsDBNull(columnId) ? defaultValue : row.GetString(columnId);
 
     public static string? GetStringOrNull(this SqlDataReader row, string columnName) => row.GetStringOrNull(row.GetOrdinal(columnName));
@@ -167,14 +154,10 @@ public static class SqlDataReaderExtensions
 
     public static byte[] GetBytes(this SqlDataReader row, string columnName) => row.GetBytes(row.GetOrdinal(columnName));
 
-#if NET6_0_OR_GREATER
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
-#endif
     public static byte[]? GetBytesOrDefault(this SqlDataReader row, string columnName, byte[]? defaultValue = default) => row.GetBytesOrDefault(row.GetOrdinal(columnName), defaultValue);
-
-#if NET6_0_OR_GREATER
+    
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
-#endif
     public static byte[]? GetBytesOrDefault(this SqlDataReader row, int columnId, byte[]? defaultValue = default) => row.IsDBNull(columnId) ? defaultValue : row.GetBytes(columnId);
 
     public static byte[]? GetBytesOrNull(this SqlDataReader row, string columnName) => row.GetBytesOrNull(row.GetOrdinal(columnName));
@@ -185,14 +168,10 @@ public static class SqlDataReaderExtensions
 
     public static Stream GetStream(this SqlDataReader row, string columnName) => row.GetStream(row.GetOrdinal(columnName));
 
-#if NET6_0_OR_GREATER
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
-#endif
     public static Stream? GetStreamOrDefault(this SqlDataReader row, string columnName, Stream? defaultValue = default) => row.GetStreamOrDefault(row.GetOrdinal(columnName), defaultValue);
 
-#if NET6_0_OR_GREATER
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
-#endif
     public static Stream? GetStreamOrDefault(this SqlDataReader row, int columnId, Stream? defaultValue = default) => row.IsDBNull(columnId) ? defaultValue : row.GetStream(columnId);
 
     public static Stream? GetStreamOrNull(this SqlDataReader row, string columnName) => row.GetStreamOrNull(row.GetOrdinal(columnName));
