@@ -170,7 +170,7 @@ public static class SqlDataRecordExtensions
     public static void SetBooleanOrNull(this SqlDataRecord row, string columnName, bool? value) => row.SetBooleanOrNull(row.GetOrdinal(columnName), value);
     public static void SetBooleanOrNull(this SqlDataRecord row, int columnId, bool? value)
     {
-        if(value.HasValue)
+        if(value is not null)
             row.SetBoolean(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -187,7 +187,7 @@ public static class SqlDataRecordExtensions
     public static void SetByteOrNull(this SqlDataRecord row, string columnName, byte? value) => row.SetByteOrNull(row.GetOrdinal(columnName), value);
     public static void SetByteOrNull(this SqlDataRecord row, int columnId, byte? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetByte(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -204,7 +204,7 @@ public static class SqlDataRecordExtensions
     public static void SetCharOrNull(this SqlDataRecord row, string columnName, char? value) => row.SetCharOrNull(row.GetOrdinal(columnName), value);
     public static void SetCharOrNull(this SqlDataRecord row, int columnId, char? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetChar(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -221,7 +221,7 @@ public static class SqlDataRecordExtensions
     public static void SetDateTimeOrNull(this SqlDataRecord row, string columnName, DateTime? value) => row.SetDateTimeOrNull(row.GetOrdinal(columnName), value);
     public static void SetDateTimeOrNull(this SqlDataRecord row, int columnId, DateTime? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetDateTime(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -238,7 +238,7 @@ public static class SqlDataRecordExtensions
     public static void SetDateTimeOffsetOrNull(this SqlDataRecord row, string columnName, DateTimeOffset? value) => row.SetDateTimeOffsetOrNull(row.GetOrdinal(columnName), value);
     public static void SetDateTimeOffsetOrNull(this SqlDataRecord row, int columnId, DateTimeOffset? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetDateTimeOffset(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -255,7 +255,7 @@ public static class SqlDataRecordExtensions
     public static void SetDecimalOrNull(this SqlDataRecord row, string columnName, decimal? value) => row.SetDecimalOrNull(row.GetOrdinal(columnName), value);
     public static void SetDecimalOrNull(this SqlDataRecord row, int columnId, decimal? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetDecimal(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -272,7 +272,7 @@ public static class SqlDataRecordExtensions
     public static void SetDoubleOrNull(this SqlDataRecord row, string columnName, double? value) => row.SetDoubleOrNull(row.GetOrdinal(columnName), value);
     public static void SetDoubleOrNull(this SqlDataRecord row, int columnId, double? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetDouble(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -289,7 +289,7 @@ public static class SqlDataRecordExtensions
     public static void SetFloatOrNull(this SqlDataRecord row, string columnName, float? value) => row.SetFloatOrNull(row.GetOrdinal(columnName), value);
     public static void SetFloatOrNull(this SqlDataRecord row, int columnId, float? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetFloat(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -306,7 +306,7 @@ public static class SqlDataRecordExtensions
     public static void SetGuidOrNull(this SqlDataRecord row, string columnName, Guid? value) => row.SetGuidOrNull(row.GetOrdinal(columnName), value);
     public static void SetGuidOrNull(this SqlDataRecord row, int columnId, Guid? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetGuid(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -323,7 +323,7 @@ public static class SqlDataRecordExtensions
     public static void SetInt16OrNull(this SqlDataRecord row, string columnName, short? value) => row.SetInt16OrNull(row.GetOrdinal(columnName), value);
     public static void SetInt16OrNull(this SqlDataRecord row, int columnId, short? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetInt16(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -340,7 +340,7 @@ public static class SqlDataRecordExtensions
     public static void SetInt32OrNull(this SqlDataRecord row, string columnName, int? value) => row.SetInt32OrNull(row.GetOrdinal(columnName), value);
     public static void SetInt32OrNull(this SqlDataRecord row, int columnId, int? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetInt32(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -357,7 +357,7 @@ public static class SqlDataRecordExtensions
     public static void SetInt64OrNull(this SqlDataRecord row, string columnName, long? value) => row.SetInt64OrNull(row.GetOrdinal(columnName), value);
     public static void SetInt64OrNull(this SqlDataRecord row, int columnId, long? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetInt64(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -374,7 +374,7 @@ public static class SqlDataRecordExtensions
     public static void SetTimeSpanOrNull(this SqlDataRecord row, string columnName, TimeSpan? value) => row.SetTimeSpanOrNull(row.GetOrdinal(columnName), value);
     public static void SetTimeSpanOrNull(this SqlDataRecord row, int columnId, TimeSpan? value)
     {
-        if (value.HasValue)
+        if (value is not null)
             row.SetTimeSpan(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
