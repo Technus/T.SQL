@@ -13,7 +13,7 @@ namespace T.SQL.Test;
 public class SQLTest
 {
     private readonly ITestOutputHelper output;
-    
+
     static SQLTest()
     {
         CopyConfig();

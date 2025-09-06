@@ -18,6 +18,18 @@ public static class SqlParameterExtensions
 
     public static DateTime? GetDateTimeOrNull(this SqlParameter parameter) => parameter.IsDBNull() ? null : parameter.GetDateTime();
 
+    public static DateTimeOffset GetDateTimeOffset(this SqlParameter parameter) => (DateTimeOffset)parameter.Value;
+
+    public static DateTimeOffset GetDateTimeOffsetOrDefault(this SqlParameter parameter, DateTimeOffset defaultValue = default) => parameter.IsDBNull() ? defaultValue : parameter.GetDateTimeOffset();
+
+    public static DateTimeOffset? GetDateTimeOffsetOrNull(this SqlParameter parameter) => parameter.IsDBNull() ? null : parameter.GetDateTimeOffset();
+
+    public static Guid GetGuid(this SqlParameter parameter) => (Guid)parameter.Value;
+
+    public static Guid GetGetGuidOrDefault(this SqlParameter parameter, Guid defaultValue = default) => parameter.IsDBNull() ? defaultValue : parameter.GetGuid();
+
+    public static Guid? GetGetGuidOrNull(this SqlParameter parameter) => parameter.IsDBNull() ? null : parameter.GetGuid();
+
     public static bool GetBoolean(this SqlParameter parameter) => (bool)parameter.Value;
 
     public static bool GetBooleanOrDefault(this SqlParameter parameter, bool defaultValue = default) => parameter.IsDBNull() ? defaultValue : parameter.GetBoolean();

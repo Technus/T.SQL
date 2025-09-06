@@ -170,7 +170,7 @@ public static class SqlDataRecordExtensions
     public static void SetBooleanOrNull(this SqlDataRecord row, string columnName, bool? value) => row.SetBooleanOrNull(row.GetOrdinal(columnName), value);
     public static void SetBooleanOrNull(this SqlDataRecord row, int columnId, bool? value)
     {
-        if(value is not null)
+        if (value is not null)
             row.SetBoolean(columnId, value.GetValueOrDefault());
         else
             row.SetDBNull(columnId);
@@ -400,9 +400,9 @@ public static class SqlDataRecordExtensions
     public static void SetStringOrDefault(this SqlDataRecord row, string columnName, string? value, string? defaultValue = default) => row.SetStringOrDefault(row.GetOrdinal(columnName), value, defaultValue);
     public static void SetStringOrDefault(this SqlDataRecord row, int columnId, string? value, string? defaultValue = default)
     {
-        if(value is not null)
+        if (value is not null)
             row.SetString(columnId, value);
-        else if(defaultValue is not null)
+        else if (defaultValue is not null)
             row.SetString(columnId, defaultValue);
         else
             row.SetDBNull(columnId);
@@ -416,21 +416,21 @@ public static class SqlDataRecordExtensions
 
     public static void SetBytes(this SqlDataRecord row, string columnName, long fieldOffset, byte[] value, int bufferOffset, int length) => row.SetBytes(row.GetOrdinal(columnName), fieldOffset, value, bufferOffset, length);
 
-    public static void SetBytes(this SqlDataRecord row, int columnId, byte[] value) => row.SetBytes(columnId, 0, value, 0 ,value.Length);
+    public static void SetBytes(this SqlDataRecord row, int columnId, byte[] value) => row.SetBytes(columnId, 0, value, 0, value.Length);
     public static void SetBytes(this SqlDataRecord row, string columnName, byte[] value) => row.SetBytes(row.GetOrdinal(columnName), value);
 
     public static void SetBytesOrDefault(this SqlDataRecord row, string columnName, byte[]? value, byte[]? defaultValue = default) => row.SetBytesOrDefault(row.GetOrdinal(columnName), value, defaultValue);
     public static void SetBytesOrDefault(this SqlDataRecord row, int columnId, byte[]? value, byte[]? defaultValue = default)
     {
-        if(value is not null)
+        if (value is not null)
             row.SetBytes(columnId, value);
-        else if(defaultValue is not null)
+        else if (defaultValue is not null)
             row.SetBytes(columnId, defaultValue);
         else
             row.SetDBNull(columnId);
     }
 
-    public static void SetBytesOrNull(this SqlDataRecord row, string columnName, byte[]? value) => row.SetBytesOrNull(row.GetOrdinal(columnName) , value);
+    public static void SetBytesOrNull(this SqlDataRecord row, string columnName, byte[]? value) => row.SetBytesOrNull(row.GetOrdinal(columnName), value);
     public static void SetBytesOrNull(this SqlDataRecord row, int columnId, byte[]? value)
     {
         if (value is not null)

@@ -156,7 +156,7 @@ public static class SqlDataReaderExtensions
 
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
     public static byte[]? GetBytesOrDefault(this SqlDataReader row, string columnName, byte[]? defaultValue = default) => row.GetBytesOrDefault(row.GetOrdinal(columnName), defaultValue);
-    
+
     [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(defaultValue))]
     public static byte[]? GetBytesOrDefault(this SqlDataReader row, int columnId, byte[]? defaultValue = default) => row.IsDBNull(columnId) ? defaultValue : row.GetBytes(columnId);
 
